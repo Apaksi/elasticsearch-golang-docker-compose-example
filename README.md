@@ -3,8 +3,8 @@ An example docker-compose setup for connecting to Elasticsearch with Go
 
 ## Usage
 
-1. Install Docker
-2. Clone the repository
+1. Install Docker according to the instructions at <https://docs.docker.com/engine/install/>
+2. Clone this repository
 3. Run `docker-compose up`
 
 ## Expected Output
