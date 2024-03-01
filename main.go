@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"crypto/tls"
-	"crypto/x509"
 	"encoding/json"
 	"fmt"
 	"github.com/elastic/go-elasticsearch/v8"
@@ -18,11 +17,6 @@ import (
 
 func main() {
 	time.Sleep(3 * time.Second)
-
-	rootCAs, _ := x509.SystemCertPool()
-	if rootCAs == nil {
-		rootCAs = x509.NewCertPool()
-	}
 
 	hostname, err := os.Hostname()
 	if err != nil {
@@ -41,15 +35,8 @@ func main() {
 		Username:  "elastic",
 		Password:  "elastinen",
 		Transport: &http.Transport{
-			//MaxIdleConnsPerHost:   10,
-			//ResponseHeaderTimeout: 5 * time.Second,
-			//DialContext: (&net.Dialer{
-			//	Timeout:   1 * time.Second,
-			//	KeepAlive: 30 * time.Second,
-			//}).DialContext,
 			TLSClientConfig: &tls.Config{
 				InsecureSkipVerify: true,
-				//	RootCAs:            rootCAs,
 			},
 		},
 	}
