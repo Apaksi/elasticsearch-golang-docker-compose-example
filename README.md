@@ -9,6 +9,10 @@ An example docker-compose setup for connecting to Elasticsearch with Go
 
 ## Expected Output
 
+After docker-compose has had time to start the containers, you should finally
+see the following output indicating that the Go application has successfully
+indexed three documents and then found and printed all three of them:
+
 ```
 app-1            | 2024/03/01 21:34:01 Document indexed successfully: This is the first document.
 app-1            | 2024/03/01 21:34:01 Document indexed successfully: This is the second document.
