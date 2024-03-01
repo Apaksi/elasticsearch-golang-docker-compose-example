@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: elasticsearch:8.12.2
+    hostname: elasticsearch
+    ports:
+      - '9200:9200'
+    environment:
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=elastinen
+    healthcheck:
+      test: ["CMD", "curl", "-k", "https://localhost:9200"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: app
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
